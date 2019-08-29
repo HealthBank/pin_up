@@ -104,5 +104,14 @@ module Pin
     def self.delete_card(token, card_token)
       build_response(make_request(:delete, {url: "customers/#{token}/cards/#{card_token}"} ))
     end
+
+    ##
+    # Deletes a customer and all of its cards, given a customer token
+    # args: customer_token (String)
+    # returns: No response body
+    # https://pinpayments.com/developers/api-reference/customers#delete-customer
+    def self.delete(token)
+      build_response(make_request(:delete, {url: "customers/#{token}"} ))
+    end
   end
 end

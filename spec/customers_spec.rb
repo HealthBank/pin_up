@@ -115,4 +115,9 @@ describe 'Customer', :vcr, class: Pin::Customer do
     Pin::Customer.create_card(customer_token, card_token)
     expect(Pin::Customer.delete_card(customer_token, card_token).code).to eq 204
   end
+
+  it 'should delete a customer given a token' do
+    customer_token = Pin::Customer.create('email@example.com', card_1)['token']
+    expect(Pin::Customer.delete(customer_token).code).to eq 204
+  end
 end

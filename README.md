@@ -158,6 +158,11 @@ This method will raise an exception if attempting to remove the user's primary c
     card_token = 'card_token'
     Pin::Customer.delete_card(customer_token, card_token)
 
+##### Delete a customer and all of its cards
+
+    customer_token = 'customer_token'
+    Pin::Customer.delete(customer_token)
+
 ## Refunds
 
 ##### Find A Refund
