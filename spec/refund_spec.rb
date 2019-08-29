@@ -59,6 +59,11 @@ describe 'Refund', :vcr, class: Pin::Refund do
     expect(Pin::Refund.find(charge['token'])[0]['amount']).to eq 400
   end
 
+  it 'should create a refund for whole charge if no amount given' do
+    refund = Pin::Refund.create(charge['token'])
+    expect(Pin::Refund.find(charge['token'])[0]['amount']).to eq 500
+  end
+
   it 'should return details of specified refund' do
     refund_token = Pin::Refund.find(charge['token'])[0]['token']
     expect(Pin::Refund.get(refund_token)['amount']).to eq 400

@@ -32,8 +32,10 @@ module Pin
     # if no amount is passed in, the full amount of the charge will be refunded
     # https://pinpayments.com/docs/api/refunds#post-refunds
     def self.create(token, amount = nil)
-      options = { amount: amount }
-      build_response(make_request(:post, { url: "charges/#{token}/refunds", options: options } ))
+      params = { url: "charges/#{token}/refunds" }
+      params[:options] = { amount: amount } if amount
+
+      build_response(make_request(:post, params))
     end
   end
 end
